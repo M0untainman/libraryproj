@@ -5,6 +5,7 @@ const title = document.querySelector('.title');
 const author = document.querySelector('.author');
 const pages = document.querySelector('.pages');
 const read = document.querySelector('.read');
+const cardHolder = document.getElementById('cardHolder')
 
 // constructor for making new books
 function Book(title, author, pages, read) {
@@ -13,7 +14,7 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.info = () => {
-        let info = title + " by " + author + ", " + pages + " pages, " + read;
+        let info = title + ' by ' + author + ', ' + pages + ' pages, ' + read;
         return info;
     }
 }
@@ -27,15 +28,42 @@ const doors = new Book('The doors of stone', 'Patrick rothfuss', '1500', 'not re
 let myLibrary = [hobbit, mistborn, dune, doors];
 
 // btn functionality
-viewBook.addEventListener("click", () => {showBooks()})
+viewBook.addEventListener('click', () => {showBooks()})
 
 // functions
     const showBooks = () =>{
         myLibrary.forEach((books) => {
-            title.innerHTML = books.title;
-            author.innerHTML = books.author;
-            pages.innerHTML = books.pages;
-            read.innerHTML = books.read;
+            let newCard = document.createElement('div');
+            newCard.className = ('card')
+            cardHolder.appendChild(newCard);
+            let newTitle = document.createElement('p');
+            newTitle.className = ('title')
+            newCard.appendChild(newTitle);
+            let newAuthor = document.createElement('p');
+            newAuthor.className = ('author')
+            newCard.appendChild(newAuthor);
+            let newPages = document.createElement('p');
+            newPages.className = ('pages')
+            newCard.appendChild(newPages);
+            let newRead = document.createElement('p');
+            newRead.className = ('read')
+            newCard.appendChild(newRead);
+            let newChange = document.createElement('input')
+            newChange.type =('button')
+            newChange.value = ('change read status')
+            newChange.className = ('btnRead')
+            newCard.appendChild(newChange);
+            let newRemove = document.createElement('input');
+            newRemove.type = ('button')
+            newRemove.className = ('btnRemove')
+            newRemove.value = ('remove book')
+            newCard.appendChild(newRemove);
+
+
+            newTitle.innerHTML = books.title;
+            newAuthor.innerHTML = books.author;
+            newPages.innerHTML = books.pages;
+            newRead.innerHTML = books.read;
         });
     };
 
