@@ -6,6 +6,11 @@ const author = document.querySelector('.author');
 const pages = document.querySelector('.pages');
 const read = document.querySelector('.read');
 const cardHolder = document.getElementById('cardHolder')
+const inputTitle = document.getElementById('inputTitle')
+const inputAuthor = document.getElementById('inputAuthor')
+const inputPages = document.getElementById('inputPages')
+const inputRead = document.getElementById('inputRead')
+const submitNew = document.getElementById('submitNew')
 
 // constructor for making new books
 function Book(title, author, pages, read) {
@@ -29,6 +34,7 @@ let myLibrary = [hobbit, mistborn, dune, doors];
 
 // btn functionality
 viewBook.addEventListener('click', () => {showBooks()})
+submitNew.addEventListener('click', () => {addBookToLibrary()})
 
 // functions
     const showBooks = () =>{
@@ -66,18 +72,21 @@ viewBook.addEventListener('click', () => {showBooks()})
             newRead.innerHTML = books.read;
         });
     };
+    
+const addBookToLibrary = () => {
+      if (inputTitle.value != '' || inputAuthor.value != '' || inputPages.value != '' || inputRead.value != '') {
+        const bookx = new Book(inputTitle.value , inputAuthor.value, inputPages.value, inputRead.value );
+        myLibrary.push(bookx);
+      } 
+      else{
+          alert('You must enter all the info in before submitting');
+      }
+    }
 
 
 
 
 
-function addBookToLibrary() {
-    //take user’s input and store the new book objects into myLibrary.
-}
-
-//Write a function that loops through the array and displays each book on the page. 
-//You can display them in some sort of table, or each on their own “card”. 
-//It might help for now to manually add a few books to your array so you can see the display.
 
 
 //Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book
