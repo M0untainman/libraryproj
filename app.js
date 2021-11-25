@@ -1,41 +1,45 @@
-//dom declarations
-const viewBook = document.querySelector(".viewBook");
-const addBook = document.querySelector(".addBook");
-const title = document.querySelector(".title");
-const author = document.querySelector(".author");
-const pages = document.querySelector(".pages");
-const read = document.querySelector(".read");
+// dom declarations
+const viewBook = document.querySelector('.viewBook');
+const addBook = document.querySelector('.addBook');
+const title = document.querySelector('.title');
+const author = document.querySelector('.author');
+const pages = document.querySelector('.pages');
+const read = document.querySelector('.read');
 
-//manual book additions
-const hobbit = new Book("hobbit", "tolkein", "299", "read");
-const mistborn = new Book("the Mistborn trilogy", "brandon Sanderson", "3000", "read");
-const dune = new Book("Dune", "frank herbert", "412", "read");
-const doors = new Book("The doors of stone", "Patrick rothfuss", "1500", "not read");
-
-//btn functionality
-viewBook.addEventListener("click", () => {showBooks()})
-
-//functions
-function showBooks(){
-    title.innerHTML = hobbit.title;
-    author.innerHTML = hobbit.author;
-    pages.innerHTML = hobbit.pages;
-    read.innerHTML = hobbit.read;
-};
-
-
-let myLibrary = [hobbit, mistborn, dune, doors];
-
-function Book(title, author, pages, read){
+// constructor for making new books
+function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function(){
+    this.info = () => {
         let info = title + " by " + author + ", " + pages + " pages, " + read;
         return info;
     }
 }
+
+// manual book additions
+const hobbit = new Book('hobbit', 'tolkein', '299', 'read');
+const mistborn = new Book('the Mistborn trilogy', 'brandon Sanderson', '3000', 'read');
+const dune = new Book('Dune', 'frank herbert', '412', 'read');
+const doors = new Book('The doors of stone', 'Patrick rothfuss', '1500', 'not read');
+
+let myLibrary = [hobbit, mistborn, dune, doors];
+
+// btn functionality
+viewBook.addEventListener("click", () => {showBooks()})
+
+// functions
+    const showBooks = () =>{
+        myLibrary.forEach((books) => {
+            title.innerHTML = books.title;
+            author.innerHTML = books.author;
+            pages.innerHTML = books.pages;
+            read.innerHTML = books.read;
+        });
+    };
+
+
 
 
 
