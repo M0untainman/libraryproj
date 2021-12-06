@@ -25,10 +25,10 @@ function Book(title, author, pages, read) {
 }
 
 // manual book additions
-const hobbit = new Book('hobbit', 'tolkein', '299', 'read');
-const mistborn = new Book('the Mistborn trilogy', 'brandon Sanderson', '3000', 'read');
-const dune = new Book('Dune', 'frank herbert', '412', 'read');
-const doors = new Book('The doors of stone', 'Patrick rothfuss', '1500', 'not read');
+const hobbit = new Book('hobbit', 'tolkein', '299',  true);
+const mistborn = new Book('the Mistborn trilogy', 'brandon Sanderson', '3000', true);
+const dune = new Book('Dune', 'frank herbert', '412', true);
+const doors = new Book('The doors of stone', 'Patrick rothfuss', '1500', false);
 
 let myLibrary = [hobbit, mistborn, dune, doors];
 
@@ -73,7 +73,14 @@ submitNew.addEventListener('click', () => {addBookToLibrary()})
             newTitle.innerHTML = books.title;
             newAuthor.innerHTML = books.author;
             newPages.innerHTML = books.pages;
-            newRead.innerHTML = books.read;
+            if (books.read == true) {
+                newRead.innerHTML = 'Book read';
+            }
+            else {
+                newRead.innerHTML = 'Book not read';
+            }
+
+            
         });
     };
 
@@ -101,11 +108,11 @@ const removebook = (e) => {
 const changeRead = (e) => {
     let nameToChange = e.srcElement.parentElement.id;
     let indexTochange = myLibrary.map((ev) => { return ev.title; }).indexOf(nameToChange);
-    if (myLibrary[indexTochange].read === 'read') {
-        myLibrary[indexTochange].read = 'not read' 
+    if (myLibrary[indexTochange].read == true) {
+        myLibrary[indexTochange].read = false; 
     }
-    else if (myLibrary[indexTochange].read === 'not read'){
-        myLibrary[indexTochange].read = 'read' 
+    else if (myLibrary[indexTochange].read == false){
+        myLibrary[indexTochange].read = true; 
     }
     showBooks();
 
