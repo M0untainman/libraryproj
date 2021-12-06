@@ -61,6 +61,7 @@ submitNew.addEventListener('click', () => {addBookToLibrary()})
             newChange.type =('button')
             newChange.value = ('change read status')
             newChange.className = ('btnRead')
+            newChange.addEventListener('click', (e) => {changeRead(e)});
             newCard.appendChild(newChange);
             let newRemove = document.createElement('input');
             newRemove.type = ('button')
@@ -90,14 +91,25 @@ const addBookToLibrary = () => {
 // function to remove a book from library
 const removebook = (e) => {
     let nameToRemove = e.srcElement.parentElement.id;
-    indexToRemove = myLibrary.map((ev) => { return ev.title; }).indexOf(nameToRemove);
+    let indexToRemove = myLibrary.map((ev) => { return ev.title; }).indexOf(nameToRemove);
     myLibrary.splice(indexToRemove, 1);
     showBooks();
 
 };
 
 // function to change the read status of a book
+const changeRead = (e) => {
+    let nameToChange = e.srcElement.parentElement.id;
+    let indexTochange = myLibrary.map((ev) => { return ev.title; }).indexOf(nameToChange);
+    if (myLibrary[indexTochange].read === 'read') {
+        myLibrary[indexTochange].read = 'not read' 
+    }
+    else if (myLibrary[indexTochange].read === 'not read'){
+        myLibrary[indexTochange].read = 'read' 
+    }
+    showBooks();
 
+};
 
 
 
