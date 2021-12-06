@@ -37,10 +37,13 @@ viewBook.addEventListener('click', () => {showBooks()})
 submitNew.addEventListener('click', () => {addBookToLibrary()})
 
 // functions
-    const showBooks = () =>{
+    // function to display the books in the cards that are created for each book
+    const showBooks = () =>{ 
+        cardHolder.innerHTML ='';
         myLibrary.forEach((books) => {
             let newCard = document.createElement('div');
             newCard.className = ('card')
+            newCard.id = (books.title)
             cardHolder.appendChild(newCard);
             let newTitle = document.createElement('p');
             newTitle.className = ('title')
@@ -63,8 +66,8 @@ submitNew.addEventListener('click', () => {addBookToLibrary()})
             newRemove.type = ('button')
             newRemove.className = ('btnRemove')
             newRemove.value = ('remove book')
+            newRemove.addEventListener('click', (e) => {removebook(e)});
             newCard.appendChild(newRemove);
-
 
             newTitle.innerHTML = books.title;
             newAuthor.innerHTML = books.author;
@@ -72,7 +75,8 @@ submitNew.addEventListener('click', () => {addBookToLibrary()})
             newRead.innerHTML = books.read;
         });
     };
-    
+
+// function to add a new book to library
 const addBookToLibrary = () => {
       if (inputTitle.value != '' || inputAuthor.value != '' || inputPages.value != '' || inputRead.value != '') {
         const bookx = new Book(inputTitle.value , inputAuthor.value, inputPages.value, inputRead.value );
@@ -82,6 +86,17 @@ const addBookToLibrary = () => {
           alert('You must enter all the info in before submitting');
       }
     }
+
+// function to remove a book from library
+const removebook = (e) => {
+    let nameToRemove = e.srcElement.parentElement.id;
+    indexToRemove = myLibrary.map((ev) => { return ev.title; }).indexOf(nameToRemove);
+    myLibrary.splice(indexToRemove, 1);
+    showBooks();
+
+};
+
+// function to change the read status of a book
 
 
 
